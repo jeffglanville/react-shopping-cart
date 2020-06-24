@@ -15,9 +15,9 @@ function App() {
 	const [cart, setCart] = useState([]);
 
 	const addItem = item => {
-		setCart({
-			...products
-		})
+		setCart([
+			...cart, {...item, id: Date.now()}
+		])
 	};
 
 	const deleteItem = (id) => {
@@ -29,7 +29,7 @@ function App() {
 		<ProductContext.Provider value={{ products, addItem }}>
 			<CartContext.Provider value={{ cart, deleteItem }} >
 			<div className="App">
-				<Navigation cart={cart} />
+				<Navigation />
 
 				{/* Routes */}
 				<Route exact path="/">
